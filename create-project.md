@@ -42,7 +42,10 @@ python manage.py runserver
 http://127.0.0.1:8000/
 ```
 
-> # Criando um usuário admin
+> # 6 Config Time
+<img src="./preview/passos/config-time-zone.png" alt="" />
+
+> # 7 Criando um usuário admin
 ```
 python manage.py createsuperuser
 ```
@@ -52,15 +55,14 @@ python manage.py createsuperuser
 http://127.0.0.1:8000/admin
 ```
 
-> # 6 Config Time
-<img src="./preview/passos/config-time-zone.png" alt="" />
-
 > * Cria a uma tabela models.py
 <img src="./preview/passos/model-first.png" alt="" />
 ```
 from django.db import models
+```
 
 # Create your models here.
+```
 class Tarefa(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField(blank=True)
@@ -71,4 +73,14 @@ class Tarefa(models.Model):
 > * Roda a migration para gerar a tabela do Model
 ```
 python manage.py makemigrations
+```
+
+> * Cria a tabela
+```
+python manage.py migrate
+```
+
+# Registrando um Model Tarefa
+<img src="./preview/passos/registrando-model.png">
+```
 ```
