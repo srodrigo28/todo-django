@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Tarefas Django</title>
+</head>
+<body>
+    <h1>Tarefas</h1>
+        <ul>                                                                        
+        {% for tarefa in tarefas %}
+            <li>
+                <strong>{{tarefa.titulo }}</strong> |
+                <span>{{tarefa.descricao }}</span>  |
+                {% if tarefa.finalizado %}  Finalizada
+                
+                {% else %}  Pendente
+                {% endif %}
+            </li>
+            {% empty %} <li>Nenhuma etarefa cadastrada.</li>        
+        {% endfor %}
+        </ul>
+</body>
+</html>
+
