@@ -2,25 +2,30 @@
 python3 -m venv venv
 source venv/bin/activate
 
-# Windows
+> # 1. Criando Virtual Env Windows
+
+> # 1.1 Ativando Virtual Env Windows
 python -m venv venv
 .\venv\Scripts\activate
 
-# Django create project
+> # 2. Django create project
 > * Instalando django
-
 ```
 python -m pip install django
 ```
 
+> # 3 Criando projeto Django
 ```
 django-admin startproject todo_project .
 ```
 
-> * Tarefas
+> # 4 Criando modulo Tarefas
 ```
 python manage.py startapp tarefas
 ```
+
+> # 5 Ativando o modulo Tarefas no settigs.py
+<img src="./preview/passos/ativar-modulo.png" alt="" />
 
 > * Rodando migrate
 ```
@@ -35,4 +40,35 @@ python manage.py runserver
 > * URL Inicial
 ```
 http://127.0.0.1:8000/
+```
+
+> # Criando um usuário admin
+```
+python manage.py createsuperuser
+```
+
+> * URL Admin
+```
+http://127.0.0.1:8000/admin
+```
+
+> # 6 Config Time
+<img src="./preview/passos/config-time-zone.png" alt="" />
+
+> * Cria a uma tabela models.py
+<img src="./preview/passos/model-first.png" alt="" />
+```
+from django.db import models
+
+# Create your models here.
+class Tarefa(models.Model):
+    titulo = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True)
+    finalizado = models.BooleanField(default=False)
+    criado_em = models.DateTimeField(auto_now_add=True)
+```
+
+> * Roda a migration para gerar a tabela do Model
+```
+python manage.py makemigrations
 ```

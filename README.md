@@ -1,7 +1,6 @@
 ## Python Django
 > * Orientação: Portal Felipe Rocha
 
-
 ### Como criar um projeto Django
 
 > * Linux / macOS
