@@ -3,33 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar tarefa</title>
+    <title>Editar Tarefa</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuração de cores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#7c3aed',
+                        dark: '#0f0f14',
+                        card: '#18181f',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
 
-<h1>Editar Tarefa</h1>
+<body class="bg-dark text-gray-200 min-h-screen flex items-center justify-center">
 
-<form method="POST">
-    {% csrf_token %}
+    <!-- Container -->
+    <div class="w-full max-w-2xl p-6">
 
-    <label for="titulo">Título</label>
-    <input id="titulo" type="text" name="titulo" value="{{ tarefa.titulo }}">
-    <br>
+        <!-- Card -->
+        <div class="bg-card border border-gray-700 rounded-2xl p-6 shadow-xl">
 
-    <label for="descricao">Descrição</label>
-    <textarea id="descricao" name="descricao">{{ tarefa.descricao }}</textarea>
-    <br>
+            <!-- Título -->
+            <h1 class="text-3xl font-bold text-white mb-6">
+                ✏️ Editar Tarefa
+            </h1>
 
-    <label for="finalizado">
-        <input id="finalizado" type="checkbox" name="finalizado"
-        {% if tarefa.finalizado %}checked{% endif %}>
-        Finalizada
-    </label>
-    <br>
+            <!-- Formulário -->
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
 
-    <button type="submit">Salvar alteração</button>
-    <a href="{% url 'listar_tarefas' %}">Cancelar</a>
-</form>
+                <!-- Título -->
+                <div>
+                    <label for="titulo" class="block text-sm font-medium mb-1">
+                        Título
+                    </label>
+                    <input id="titulo"
+                           type="text"
+                           name="titulo"
+                           value="{{ tarefa.titulo }}"
+                           required
+                           class="w-full px-4 py-3 rounded-xl bg-dark border border-gray-700
+                                  focus:outline-none focus:ring-2 focus:ring-primary
+                                  focus:border-primary transition">
+                </div>
+
+                <!-- Descrição -->
+                <div>
+                    <label for="descricao" class="block text-sm font-medium mb-1">
+                        Descrição
+                    </label>
+                    <textarea id="descricao"
+                              name="descricao"
+                              rows="4"
+                              required
+                              class="w-full px-4 py-3 rounded-xl bg-dark border border-gray-700
+                                     focus:outline-none focus:ring-2 focus:ring-primary
+                                     focus:border-primary transition">{{ tarefa.descricao }}</textarea>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="flex items-center gap-3">
+                    <input id="finalizado"
+                           type="checkbox"
+                           name="finalizado"
+                           class="w-5 h-5 accent-primary cursor-pointer"
+                           {% if tarefa.finalizado %}checked{% endif %}>
+                    <label for="finalizado" class="cursor-pointer text-sm">
+                        Marcar como finalizada
+                    </label>
+                </div>
+
+                <!-- Ações -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button type="submit"
+                            class="flex-1 px-5 py-3 rounded-xl
+                                   bg-primary hover:bg-purple-700 transition
+                                   text-white font-semibold">
+                        💾 Salvar Alterações
+                    </button>
+
+                    <a href="{% url 'listar_tarefas' %}"
+                       class="flex-1 text-center px-5 py-3 rounded-xl
+                              border border-gray-600 hover:border-primary
+                              hover:text-primary transition">
+                        ❌ Cancelar
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
