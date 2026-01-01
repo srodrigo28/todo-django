@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tarefa
 
+# def listar_tarefas(request):
+#     tarefas = Tarefa.objects.all()
+#     return render(request, 'tarefas/listar.html', {'tarefas': tarefas})
+
 def listar_tarefas(request):
     tarefas = Tarefa.objects.all()
     total = tarefas.count()
     pendentes = tarefas.filter(finalizado=False).count()
     finalizadas = tarefas.filter(finalizado=True).count()
 
-    return render(request, 'listar.html', {
+    return render(request, 'tarefas/listar.html', {
         'tarefas': tarefas,
         'total': total,
         'pendentes': pendentes,
