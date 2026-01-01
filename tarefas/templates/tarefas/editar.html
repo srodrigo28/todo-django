@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar tarefa</title>
+</head>
+<body>
+
+<h1>Editar Tarefa</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label for="titulo">Título</label>
+    <input id="titulo" type="text" name="titulo" value="{{ tarefa.titulo }}">
+    <br>
+
+    <label for="descricao">Descrição</label>
+    <textarea id="descricao" name="descricao">{{ tarefa.descricao }}</textarea>
+    <br>
+
+    <label for="finalizado">
+        <input id="finalizado" type="checkbox" name="finalizado"
+        {% if tarefa.finalizado %}checked{% endif %}>
+        Finalizada
+    </label>
+    <br>
+
+    <button type="submit">Salvar alteração</button>
+    <a href="{% url 'listar_tarefas' %}">Cancelar</a>
+</form>
+
+</body>
+</html>

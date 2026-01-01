@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tarefa
 
 def listar_tarefas(request):
@@ -15,3 +15,15 @@ def nova_tarefa(request):
         return redirect('listar_tarefas')
     
     return render(request, 'tarefas/nova.html')
+
+def editar_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+
+    if request.method == 'POST':
+        tarefa.titulo = request.POST.get('titulo')
+        tarefa.descricao = request.POST.get('descricao')
+        tarefa.finalizado = 'finalizado' in request.POST
+        tarefa.save()
+        return redirect('listar_tarefas')
+    
+    return render(request, 'tarefas/editar.html', {'tarefa': tarefa})
