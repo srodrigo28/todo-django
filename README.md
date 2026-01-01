@@ -10,3 +10,18 @@ source venv/bin/activate
 > * Windows
 python -m venv venv
 .\venv\Scripts\activate
+
+### * Cria a tabela
+```
+python manage.py migrate
+```
+
+### Criar um usuário
+```
+python manage.py createsuperuser
+```
+
+### Rodar o projeto
+```
+python manage.py runserver
+```

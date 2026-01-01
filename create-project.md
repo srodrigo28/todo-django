@@ -1,12 +1,13 @@
-# Linux / macOS
-python3 -m venv venv
-source venv/bin/activate
-
 > # 1. Criando Virtual Env Windows
 
 > # 1.1 Ativando Virtual Env Windows
+```
 python -m venv venv
+```
+
+```
 .\venv\Scripts\activate
+```
 
 > # 2. Django create project
 > * Instalando django
