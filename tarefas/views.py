@@ -27,3 +27,13 @@ def editar_tarefa(request, tarefa_id):
         return redirect('listar_tarefas')
     
     return render(request, 'tarefas/editar.html', {'tarefa': tarefa})
+
+def detalhe_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+    return render(request, 'detalhe.html', 
+        { 'tarefa': tarefa })
+
+def deletar_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+    tarefa.delete()
+    return redirect('listar_tarefas')

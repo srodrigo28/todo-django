@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes tarefa</title>
+</head>
+<body>
+    <h1>{{ tarefa.titulo }}</h1>
+
+    <p>{{ tarefa.descricao }}</p>
+
+    <p>
+        Status:
+        {% if tarefa.finalizado %}
+            Finalizada
+        {% else %}
+            Pendente
+        {% endif %}
+    </p>
+     <a href="{% url 'listar_tarefas' %}">Voltar</a>
+</body>
+</html>
