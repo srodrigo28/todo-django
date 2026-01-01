@@ -14,4 +14,4 @@ def nova_tarefa(request):
 
         return redirect('listar_tarefas')
     
-    return render(request, 'tarefas/nota.html')
+    return render(request, 'tarefas/nova.html')
