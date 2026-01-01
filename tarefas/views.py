@@ -3,7 +3,16 @@ from .models import Tarefa
 
 def listar_tarefas(request):
     tarefas = Tarefa.objects.all()
-    return render(request, 'tarefas/listar.html', {'tarefas': tarefas})
+    total = tarefas.count()
+    pendentes = tarefas.filter(finalizado=False).count()
+    finalizadas = tarefas.filter(finalizado=True).count()
+
+    return render(request, 'listar.html', {
+        'tarefas': tarefas,
+        'total': total,
+        'pendentes': pendentes,
+        'finalizadas': finalizadas,
+    })
 
 def nova_tarefa(request):
     if request.method == 'POST':
