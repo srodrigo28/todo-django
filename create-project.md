@@ -82,5 +82,6 @@ python manage.py migrate
 
 # Registrando um Model Tarefa
 <img src="./preview/passos/registrando-model.png">
-```
-```
+
+# Definindo um modulo melhor de view para a tarefa no painel
+<img src="./preview/passos/admin-py.png" />

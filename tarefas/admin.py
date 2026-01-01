@@ -1,7 +1,12 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Tarefa
 
-admin.site.register(Tarefa)
+# Exemplo 1 
+# # admin.site.register(Tarefa)
+
+# Exemplo 2
+@admin.register(Tarefa)
+class TarefaAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'descricao', 'finalizado', 'criado_em')
+    search_fields = ('titulo',)
 
