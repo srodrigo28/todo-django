@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista Tarefas Django</title>
 </head>
+
 <body>
     <div>
         <h1>Tarefas</h1>
-        
         <a href="{% url 'nova_tarefa' %}">Nova</a>
     </div>
-        <ul>                                                                        
+    <ul>
         {% for tarefa in tarefas %}
-            <li>
-                <strong>{{tarefa.titulo }}</strong> |
-                <span>{{tarefa.descricao }}</span>  |
-                {% if tarefa.finalizado %}  Finalizada
-                
-                {% else %}  Pendente
-                {% endif %}
-            </li>
-            {% empty %} <li>Nenhuma etarefa cadastrada.</li>        
-        {% endfor %}
-        </ul>
-</body>
-</html>
+        <li>
+            <strong>{{ tarefa.titulo }}</strong> |
+            <span>{{ tarefa.descricao }}</span> |
 
+            {% if tarefa.finalizado %}
+            Finalizada
+            {% else %}
+            Pendente
+            {% endif %}
+            | <a href="{% url 'detalhes_tarefa' tarefa.id %}">Detalhes</a>
+
+            <form method="POST" action="{% url 'deletar_tarefa' tarefa.id %}" style="display:inline;"
+                onsubmit="return confirm('Deseja realmente apagar esta tarefa?');">
+                {% csrf_token %}
+                <button type="submit">Excluir</button>
+            </form>
+        </li>
+        {% empty %}
+        <li>Nenhuma tarefa cadastrada.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

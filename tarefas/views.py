@@ -9,11 +9,12 @@ def nova_tarefa(request):
     if request.method == 'POST':
         titulo = request.POST.get('titulo')
         descricao = request.POST.get('descricao')
-        
-        Tarefa.objects.create(titulo=titulo, descricao=descricao)
+
+        if titulo:
+            Tarefa.objects.create(titulo=titulo, descricao=descricao)
 
         return redirect('listar_tarefas')
-    
+
     return render(request, 'tarefas/nova.html')
 
 def editar_tarefa(request, tarefa_id):
@@ -25,15 +26,17 @@ def editar_tarefa(request, tarefa_id):
         tarefa.finalizado = 'finalizado' in request.POST
         tarefa.save()
         return redirect('listar_tarefas')
-    
+
     return render(request, 'tarefas/editar.html', {'tarefa': tarefa})
 
-def detalhe_tarefa(request, tarefa_id):
+def detalhes_tarefa(request, tarefa_id):
     tarefa = get_object_or_404(Tarefa, id=tarefa_id)
-    return render(request, 'detalhe.html', 
-        { 'tarefa': tarefa })
+    return render(request, 'tarefas/detalhe.html', {'tarefa': tarefa})
 
 def deletar_tarefa(request, tarefa_id):
     tarefa = get_object_or_404(Tarefa, id=tarefa_id)
-    tarefa.delete()
+
+    if request.method == 'POST':
+        tarefa.delete()
+
     return redirect('listar_tarefas')
